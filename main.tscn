@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://csqsc35yner"]
+[gd_scene load_steps=9 format=3 uid="uid://csqsc35yner"]
 
 [ext_resource type="Script" uid="uid://0o0os1yjw5w" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dmw3yudy5xyvl" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dcsuqv5wdvwg0" path="res://mob.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dp1vhlvr5i2u6" path="res://power_up.tscn" id="3_272bh"]
 [ext_resource type="PackedScene" uid="uid://dmv4xvelfnqot" path="res://hud.tscn" id="4_1bvp3"]
 [ext_resource type="AudioStream" uid="uid://hskldlmnj2o5" path="res://art/House In a Forest Loop.ogg" id="4_7mycd"]
 [ext_resource type="AudioStream" uid="uid://bbv3exonwrotn" path="res://art/gameover.wav" id="5_272bh"]
@@ -16,6 +17,7 @@ point_count = 11
 [node name="Main" type="Node"]
 script = ExtResource("1_0xm2m")
 mob_scene = ExtResource("2_h2yge")
+powerup_scene = ExtResource("3_272bh")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -100
@@ -48,6 +50,9 @@ parameters/looping = false
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_272bh")
 
+[node name="PowerUpTimer" type="Timer" parent="."]
+wait_time = 6.0
+
 [node name="MobPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_0xm2m")
 
@@ -60,4 +65,5 @@ rotation = 1.57234
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="timeout" from="PowerUpTimer" to="." method="_on_power_up_timer_timeout"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]

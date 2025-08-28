@@ -1,6 +1,7 @@
 extends Node
 
 @export var mob_scene: PackedScene
+@export var powerup_scene: PackedScene
 var score: int = 0
 
 func _ready():
@@ -63,3 +64,16 @@ func new_game():
 	$StartTimer.start()
 	get_tree().call_group("mobs", "queue_free")
 	$Music.play()
+	$PowerUpTimer.start() # <--- démarre le spawn de powerups
+
+
+
+func _on_power_up_timer_timeout() -> void:
+	var p: Node2D = powerup_scene.instantiate()
+	# Spawn dans la zone visible
+	var rect := get_viewport().get_visible_rect()
+	var margin := 24.0
+	var x := randf_range(rect.position.x + margin, rect.end.x - margin)
+	var y := randf_range(rect.position.y + margin, rect.end.y - margin)
+	p.global_position = Vector2(x, y)
+	add_child(p)

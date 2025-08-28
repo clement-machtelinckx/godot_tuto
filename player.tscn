@@ -36,8 +36,8 @@ animations = [{
 radius = 24.0
 height = 58.0
 
-[node name="Player" type="Area2D"]
-collision_mask = 4
+[node name="Player" type="Area2D" groups=["player"]]
+collision_mask = 12
 script = ExtResource("1_sweqy")
 bullet_scene = ExtResource("2_2hs0m")
 metadata/_edit_group_ = true

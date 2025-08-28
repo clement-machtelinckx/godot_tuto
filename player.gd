@@ -72,3 +72,16 @@ func _try_shoot() -> void:
 	var from := global_position
 	bullet.start(from, dir)
 	get_tree().current_scene.add_child(bullet)
+	
+	
+func burst():
+	# 8 directions (N, NE, E, SE, S, SW, W, NW)
+	var dirs := [
+		Vector2.UP, Vector2(1, -1), Vector2.RIGHT, Vector2(1, 1),
+		Vector2.DOWN, Vector2(-1, 1), Vector2.LEFT, Vector2(-1, -1),
+	]
+	var from := global_position
+	for d in dirs:
+		var b := bullet_scene.instantiate()
+		b.start(from, d)  # ton Bullet normalise déjà la direction et règle la rotation
+		get_tree().current_scene.add_child(b)

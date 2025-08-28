@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dp1vhlvr5i2u6"]
+
+[ext_resource type="Script" uid="uid://dh8irgnl1tm1u" path="res://power_up.gd" id="1_rsmid"]
+[ext_resource type="Texture2D" uid="uid://cge88yc7p4652" path="res://art/logo-transparent.png" id="2_3jxhb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vu7hg"]
+radius = 931.355
+height = 2467.75
+
+[node name="PowerUp" type="Area2D"]
+scale = Vector2(0.03, 0.03)
+collision_layer = 8
+script = ExtResource("1_rsmid")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_3jxhb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+skew = -0.0296706
+shape = SubResource("CapsuleShape2D_vu7hg")
+debug_color = Color(0.998278, 0.0330428, 9.62615e-07, 0.42)
+
+[node name="LifeTime" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
